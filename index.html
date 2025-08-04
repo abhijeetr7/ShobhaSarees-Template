@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShobhaSarees - Elegance Woven in Every Thread</title>
+    <meta name="description" content="Discover exquisite sarees for every occasion at ShobhaSarees. Handpicked collections, traditional craftsmanship, and modern designs.">
+    <meta name="keywords" content="sarees, Indian fashion, traditional sarees, silk sarees, designer sarees, ethnic wear, women's fashion">
+    <link rel="icon" href="https://placehold.co/32x32/000000/FFFFFF?text=SS" type="image/x-icon">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom CSS for animations and specific styling */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden; /* Prevent horizontal scroll due to animations */
+        }
+
+        /* Fade-in animation for sections */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Hero text animation */
+        .hero-text-animate {
+            animation: slideInLeft 1s ease-out forwards;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Carousel specific styles */
+        .carousel-container {
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch; /* For smoother scrolling on iOS */
+            scrollbar-width: none; /* Hide scrollbar for Firefox */
+            -ms-overflow-style: none; /* Hide scrollbar for IE/Edge */
+        }
+
+        .carousel-container::-webkit-scrollbar {
+            display: none; /* Hide scrollbar for Chrome, Safari, Opera */
+        }
+
+        .carousel-item {
+            scroll-snap-align: start;
+            flex: 0 0 100%; /* Each item takes full width */
+        }
+
+        /* Button hover effects */
+        .btn-primary {
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #a04000; /* Darker shade of orange-700 */
+            transform: translateY(-2px);
+        }
+
+        /* Card hover effects */
+        .card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Gallery tabs */
+        .tab-button.active {
+            border-bottom: 2px solid #e67e22; /* Orange-600 */
+            color: #e67e22;
+            font-weight: 600;
+        }
+
+        /* Live Chat Widget Placeholder Style */
+        #live-chat-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25D366; /* WhatsApp Green */
+            color: white;
+            padding: 1rem;
+            border-radius: 9999px; /* Fully rounded */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            transition: transform 0.3s ease;
+        }
+
+        #live-chat-widget:hover {
+            transform: scale(1.05);
+        }
+
+        #live-chat-widget .icon {
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+        }
+
+        /* Basic Font Awesome for social icons */
+        @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css");
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Header / Navigation -->
+    <header class="bg-white shadow-sm py-4 fixed w-full z-50">
+        <nav class="container mx-auto flex justify-between items-center px-4">
+            <a href="#" class="text-2xl font-bold text-orange-600">ShobhaSarees</a>
+            <div class="hidden md:flex space-x-6">
+                <a href="#home" class="text-gray-600 hover:text-orange-600 transition-colors">Home</a>
+                <a href="#about" class="text-gray-600 hover:text-orange-600 transition-colors">About Us</a>
+                <a href="#news" class="text-gray-600 hover:text-orange-600 transition-colors">News</a>
+                <a href="#products" class="text-gray-600 hover:text-orange-600 transition-colors">Products</a>
+                <a href="#gallery" class="text-gray-600 hover:text-orange-600 transition-colors">Gallery</a>
+                <a href="#testimonials" class="text-gray-600 hover:text-orange-600 transition-colors">Testimonials</a>
+                <a href="#contact" class="text-gray-600 hover:text-orange-600 transition-colors">Contact</a>
+            </div>
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="md:hidden text-gray-600 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </nav>
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-white shadow-lg py-4">
+            <a href="#home" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Home</a>
+            <a href="#about" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">About Us</a>
+            <a href="#news" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">News</a>
+            <a href="#products" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Products</a>
+            <a href="#gallery" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Gallery</a>
+            <a href="#testimonials" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Testimonials</a>
+            <a href="#contact" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Contact</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- 1. Home Section (Hero) -->
+        <section id="home" class="relative bg-gradient-to-r from-orange-100 to-white pt-24 pb-16 md:py-32 overflow-hidden">
+            <div class="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-8">
+                <!-- Left Column - Text -->
+                <div class="md:w-1/2 text-center md:text-left hero-text-animate">
+                    <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight mb-4">
+                        ShobhaSarees: <span class="text-orange-600">Elegance Woven</span> in Every Thread
+                    </h1>
+                    <p class="text-lg md:text-xl text-gray-700 mb-8">
+                        Discover our exquisite collection of traditional and contemporary sarees, crafted with passion and precision to celebrate your unique style.
+                    </p>
+                    <ul class="text-gray-600 text-base md:text-lg mb-8 space-y-2">
+                        <li class="flex items-center justify-center md:justify-start">
+                            <svg class="w-5 h-5 text-orange-500 mr-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                            Handpicked, premium quality fabrics
+                        </li>
+                        <li class="flex items-center justify-center md:justify-start">
+                            <svg class="w-5 h-5 text-orange-500 mr-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                            Intricate designs & traditional craftsmanship
+                        </li>
+                        <li class="flex items-center justify-center md:justify-start">
+                            <svg class="w-5 h-5 text-orange-500 mr-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                            Perfect for weddings, festivals, and everyday elegance
+                        </li>
+                    </ul>
+                    <div class="text-center md:text-left">
+                        <a href="#products" class="inline-flex items-center px-8 py-4 bg-orange-600 text-white font-semibold rounded-full shadow-lg hover:bg-orange-700 btn-primary">
+                            Explore Our Collection
+                            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Column - Carousel -->
+                <div class="md:w-1/2 w-full relative h-80 md:h-96 rounded-xl shadow-xl overflow-hidden">
+                    <div id="hero-carousel" class="flex h-full carousel-container">
+                        <img src="https://placehold.co/800x600/FFD700/000000?text=Saree+Model+1" alt="Model wearing a beautiful silk saree" class="carousel-item object-cover w-full h-full lazy-load" loading="lazy">
+                        <img src="https://placehold.co/800x600/ADD8E6/000000?text=Saree+Model+2" alt="Model showcasing a vibrant designer saree" class="carousel-item object-cover w-full h-full lazy-load" loading="lazy">
+                        <img src="https://placehold.co/800x600/DDA0DD/000000?text=Saree+Model+3" alt="Model in a traditional handloom saree" class="carousel-item object-cover w-full h-full lazy-load" loading="lazy">
+                    </div>
+                    <!-- Carousel Navigation Buttons -->
+                    <button id="prev-slide" class="absolute top-1/2 left-4 -translate-y-1/2 bg-white bg-opacity-70 p-2 rounded-full shadow-md hover:bg-opacity-90 transition-all">
+                        <svg class="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                    </button>
+                    <button id="next-slide" class="absolute top-1/2 right-4 -translate-y-1/2 bg-white bg-opacity-70 p-2 rounded-full shadow-md hover:bg-opacity-90 transition-all">
+                        <svg class="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. About Us Section -->
+        <section id="about" class="py-16 md:py-24 bg-white fade-in-section">
+            <div class="container mx-auto px-4 flex flex-col md:flex-row items-center gap-12">
+                <!-- Brand Image -->
+                <div class="md:w-1/2 w-full">
+                    <img src="https://placehold.co/600x400/F0F0F0/333333?text=ShobhaSarees+Store" alt="ShobhaSarees physical store or founders" class="rounded-xl shadow-lg w-full h-auto lazy-load" loading="lazy">
+                </div>
+                <!-- Textual Info -->
+                <div class="md:w-1/2 w-full text-center md:text-left">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Our Journey, Our Passion</h2>
+                    <p class="text-gray-700 text-lg leading-relaxed mb-4">
+                        ShobhaSarees was founded with a vision to bring the timeless beauty of Indian sarees to every woman. Our journey began in 1995, rooted in a deep appreciation for traditional craftsmanship and a desire to preserve the rich heritage of handloom weaving.
+                    </p>
+                    <p class="text-gray-700 text-lg leading-relaxed">
+                        We believe in empowering artisans and delivering unparalleled quality. Each saree in our collection tells a story of dedication, artistry, and cultural richness. Our ethos is built on authenticity, customer satisfaction, and a commitment to sustainable practices.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Latest News & Updates -->
+        <section id="news" class="py-16 md:py-24 bg-gray-100 fade-in-section">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-12">Latest News & Updates</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Blog Card 1 -->
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden card fade-in-section">
+                        <img src="https://placehold.co/400x250/E0E0E0/333333?text=Blog+Image+1" alt="Traditional Saree Weaving Techniques" class="w-full h-48 object-cover lazy-load" loading="lazy">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-gray-900 mb-2">The Art of Handloom Weaving</h3>
+                            <p class="text-gray-600 text-sm mb-4">Explore the intricate techniques and rich history behind India's traditional handloom sarees.</p>
+                            <a href="#" class="text-orange-600 hover:text-orange-800 font-medium flex items-center">
+                                Read More
+                                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Event Card -->
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden card fade-in-section">
+                        <img src="https://placehold.co/400x250/D0D0D0/333333?text=Event+Image" alt="ShobhaSarees Fashion Show Event" class="w-full h-48 object-cover lazy-load" loading="lazy">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-gray-900 mb-2">Upcoming Saree Fashion Show</h3>
+                            <p class="text-gray-600 text-sm mb-4">Join us for an exclusive showcase of our latest collection on [Date] at [Location].</p>
+                            <a href="#" class="text-orange-600 hover:text-orange-800 font-medium flex items-center">
+                                Learn More
+                                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- News Card -->
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden card fade-in-section">
+                        <img src="https://placehold.co/400x250/C0C0C0/333333?text=News+Image" alt="ShobhaSarees Featured in Magazine" class="w-full h-48 object-cover lazy-load" loading="lazy">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-gray-900 mb-2">ShobhaSarees Featured in 'Vogue India'</h3>
+                            <p class="text-gray-600 text-sm mb-4">Read about our journey and vision in the latest edition of Vogue India magazine.</p>
+                            <a href="#" class="text-orange-600 hover:text-orange-800 font-medium flex items-center">
+                                Discover More
+                                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Our Product Range -->
+        <section id="products" class="py-16 md:py-24 bg-white fade-in-section">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-12">Our Product Range</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Saree Card 1 -->
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden card fade-in-section">
+                        <img src="https://placehold.co/400x300/F8C471/000000?text=Silk+Saree" alt="Elegant Silk Saree" class="w-full h-56 object-cover lazy-load" loading="lazy">
+                        <div class="p-4 text-center">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-1">Banarasi Silk Saree</h3>
+                            <p class="text-orange-600 font-bold text-xl mb-3">₹12,500</p>
+                            <button class="px-4 py-2 bg-orange-500 text-white rounded-full text-sm hover:bg-orange-600 transition-colors">Add to Cart</button>
+                        </div>
+                    </div>
+                    <!-- Saree Card 2 -->
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden card fade-in-section">
+                        <img src="https://placehold.co/400x300/A2D9CE/000000?text=Cotton+Saree" alt="Comfortable Cotton Saree" class="w-full h-56 object-cover lazy-load" loading="lazy">
+                        <div class="p-4 text-center">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-1">Pure Cotton Saree</h3>
+                            <p class="text-orange-600 font-bold text-xl mb-3">₹4,800</p>
+                            <button class="px-4 py-2 bg-orange-500 text-white rounded-full text-sm hover:bg-orange-600 transition-colors">Add to Cart</button>
+                        </div>
+                    </div>
+                    <!-- Saree Card 3 -->
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden card fade-in-section">
+                        <img src="https://placehold.co/400x300/D7BDE2/000000?text=Georgette+Saree" alt="Flowy Georgette Saree" class="w-full h-56 object-cover lazy-load" loading="lazy">
+                        <div class="p-4 text-center">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-1">Georgette Designer Saree</h3>
+                            <p class="text-orange-600 font-bold text-xl mb-3">₹8,900</p>
+                            <button class="px-4 py-2 bg-orange-500 text-white rounded-full text-sm hover:bg-orange-600 transition-colors">Add to Cart</button>
+                        </div>
+                    </div>
+                    <!-- Saree Card 4 -->
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden card fade-in-section">
+                        <img src="https://placehold.co/400x300/F5B7B1/000000?text=Kanjeevaram+Saree" alt="Luxurious Kanjeevaram Saree" class="w-full h-56 object-cover lazy-load" loading="lazy">
+                        <div class="p-4 text-center">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-1">Kanjeevaram Bridal Saree</h3>
+                            <p class="text-orange-600 font-bold text-xl mb-3">₹25,000</p>
+                            <button class="px-4 py-2 bg-orange-500 text-white rounded-full text-sm hover:bg-orange-600 transition-colors">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center mt-12">
+                    <a href="#" class="inline-flex items-center px-8 py-4 bg-gray-800 text-white font-semibold rounded-full shadow-lg hover:bg-gray-900 btn-primary">
+                        View All Products
+                        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Our Gallery -->
+        <section id="gallery" class="py-16 md:py-24 bg-gray-100 fade-in-section">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-12">Our Gallery</h2>
+
+                <!-- Tabs/Dropdown for Gallery Content -->
+                <div class="flex justify-center mb-8">
+                    <div class="inline-flex bg-white rounded-full shadow-md p-1">
+                        <button class="tab-button px-6 py-3 rounded-full text-gray-700 hover:bg-gray-100 transition-colors active" data-tab="images">Product Images</button>
+                        <button class="tab-button px-6 py-3 rounded-full text-gray-700 hover:bg-gray-100 transition-colors" data-tab="videos">Videos</button>
+                        <button class="tab-button px-6 py-3 rounded-full text-gray-700 hover:bg-gray-100 transition-colors" data-tab="events">Events</button>
+                    </div>
+                </div>
+
+                <!-- Gallery Content Area -->
+                <div id="gallery-content">
+                    <!-- Product Images Tab (Default Active) -->
+                    <div id="images" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 gallery-tab-content active-tab">
+                        <img src="https://placehold.co/400x300/FFC0CB/000000?text=Saree+Gallery+1" alt="Saree Gallery Image 1" class="w-full h-48 object-cover rounded-lg shadow-sm lazy-load" loading="lazy">
+                        <img src="https://placehold.co/400x300/ADD8E6/000000?text=Saree+Gallery+2" alt="Saree Gallery Image 2" class="w-full h-48 object-cover rounded-lg shadow-sm lazy-load" loading="lazy">
+                        <img src="https://placehold.co/400x300/90EE90/000000?text=Saree+Gallery+3" alt="Saree Gallery Image 3" class="w-full h-48 object-cover rounded-lg shadow-sm lazy-load" loading="lazy">
+                        <img src="https://placehold.co/400x300/FFD700/000000?text=Saree+Gallery+4" alt="Saree Gallery Image 4" class="w-full h-48 object-cover rounded-lg shadow-sm lazy-load" loading="lazy">
+                        <img src="https://placehold.co/400x300/DDA0DD/000000?text=Saree+Gallery+5" alt="Saree Gallery Image 5" class="w-full h-48 object-cover rounded-lg shadow-sm lazy-load" loading="lazy">
+                        <img src="https://placehold.co/400x300/AFEEEE/000000?text=Saree+Gallery+6" alt="Saree Gallery Image 6" class="w-full h-48 object-cover rounded-lg shadow-sm lazy-load" loading="lazy">
+                    </div>
+
+                    <!-- Videos Tab -->
+                    <div id="videos" class="hidden grid grid-cols-1 md:grid-cols-2 gap-4 gallery-tab-content">
+                        <div class="relative pt-[56.25%] rounded-lg shadow-sm overflow-hidden lazy-load" loading="lazy">
+                            <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                        <div class="relative pt-[56.25%] rounded-lg shadow-sm overflow-hidden lazy-load" loading="lazy">
+                            <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                    </div>
+
+                    <!-- Events Tab -->
+                    <div id="events" class="hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 gallery-tab-content">
+                        <img src="https://placehold.co/600x400/B0E0E6/000000?text=Event+Photo+1" alt="Event Photo 1" class="w-full h-56 object-cover rounded-lg shadow-sm lazy-load" loading="lazy">
+                        <img src="https://placehold.co/600x400/FFB6C1/000000?text=Event+Photo+2" alt="Event Photo 2" class="w-full h-56 object-cover rounded-lg shadow-sm lazy-load" loading="lazy">
+                        <img src="https://placehold.co/600x400/D8BFD8/000000?text=Event+Photo+3" alt="Event Photo 3" class="w-full h-56 object-cover rounded-lg shadow-sm lazy-load" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. Testimonials -->
+        <section id="testimonials" class="py-16 md:py-24 bg-white fade-in-section">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-12">What Our Customers Say</h2>
+                <div class="relative">
+                    <div id="testimonial-carousel" class="flex overflow-x-hidden carousel-container">
+                        <!-- Testimonial Card 1 -->
+                        <div class="carousel-item p-6 bg-orange-50 rounded-xl shadow-md flex-shrink-0 w-full md:w-1/2 lg:w-1/3 mx-4">
+                            <p class="text-gray-700 text-lg italic mb-4">“Absolutely stunning sarees! The quality is exceptional and the designs are truly unique. ShobhaSarees is my go-to for all occasions.”</p>
+                            <p class="font-semibold text-orange-600">- Aarti Sharma</p>
+                        </div>
+                        <!-- Testimonial Card 2 -->
+                        <div class="carousel-item p-6 bg-orange-50 rounded-xl shadow-md flex-shrink-0 w-full md:w-1/2 lg:w-1/3 mx-4">
+                            <p class="text-gray-700 text-lg italic mb-4">“I love the elegant collection. Every piece feels special and the customer service was fantastic. Highly recommend!”</p>
+                            <p class="font-semibold text-orange-600">- Meena Patel</p>
+                        </div>
+                        <!-- Testimonial Card 3 -->
+                        <div class="carousel-item p-6 bg-orange-50 rounded-xl shadow-md flex-shrink-0 w-full md:w-1/2 lg:w-1/3 mx-4">
+                            <p class="text-gray-700 text-lg italic mb-4">“The online shopping experience was seamless, and the saree arrived beautifully packaged. ShobhaSarees truly delivers on quality and style.”</p>
+                            <p class="font-semibold text-orange-600">- Priya Singh</p>
+                        </div>
+                        <!-- Testimonial Card 4 -->
+                        <div class="carousel-item p-6 bg-orange-50 rounded-xl shadow-md flex-shrink-0 w-full md:w-1/2 lg:w-1/3 mx-4">
+                            <p class="text-gray-700 text-lg italic mb-4">“Their traditional handloom collection is breathtaking. It's rare to find such authentic pieces with such attention to detail.”</p>
+                            <p class="font-semibold text-orange-600">- Kavita Rao</p>
+                        </div>
+                    </div>
+                    <!-- Testimonial Carousel Navigation -->
+                    <button id="prev-testimonial" class="absolute top-1/2 left-0 -translate-y-1/2 bg-white bg-opacity-70 p-2 rounded-full shadow-md hover:bg-opacity-90 transition-all">
+                        <svg class="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                    </button>
+                    <button id="next-testimonial" class="absolute top-1/2 right-0 -translate-y-1/2 bg-white bg-opacity-70 p-2 rounded-full shadow-md hover:bg-opacity-90 transition-all">
+                        <svg class="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. Get in Touch -->
+        <section id="contact" class="py-16 md:py-24 bg-gray-100 fade-in-section">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-12">Get in Touch</h2>
+                <div class="flex flex-col md:flex-row gap-12 items-start">
+                    <!-- Contact Form -->
+                    <div class="md:w-1/2 w-full bg-white p-8 rounded-xl shadow-md">
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-6">Send Us a Message</h3>
+                        <form action="#" method="POST" class="space-y-6">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Name</label>
+                                <input type="text" id="name" name="name" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500" placeholder="Your Name" required>
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                                <input type="email" id="email" name="email" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500" placeholder="your@example.com" required>
+                            </div>
+                            <div>
+                                <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Message</label>
+                                <textarea id="message" name="message" rows="5" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500" placeholder="Your message..." required></textarea>
+                            </div>
+                            <button type="submit" class="w-full px-6 py-3 bg-orange-600 text-white font-semibold rounded-full shadow-lg hover:bg-orange-700 btn-primary">Send Message</button>
+                        </form>
+                    </div>
+
+                    <!-- Contact Info -->
+                    <div class="md:w-1/2 w-full bg-white p-8 rounded-xl shadow-md">
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-6">Contact Information</h3>
+                        <div class="space-y-4 text-gray-700 text-lg">
+                            <p class="flex items-center"><i class="fas fa-map-marker-alt text-orange-500 mr-3"></i> 123 Saree Lane, Textile City, Mumbai, India</p>
+                            <p class="flex items-center"><i class="fas fa-phone-alt text-orange-500 mr-3"></i> +91 98765 43210</p>
+                            <p class="flex items-center"><i class="fas fa-envelope text-orange-500 mr-3"></i> info@shobhasarees.com</p>
+                            <p class="flex items-center"><i class="fas fa-clock text-orange-500 mr-3"></i> Mon - Sat: 10:00 AM - 7:00 PM</p>
+                        </div>
+                        <div class="mt-8 rounded-lg overflow-hidden shadow-sm lazy-load" loading="lazy">
+                            <!-- Google Maps iframe placeholder -->
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3769.7618999999997!2d72.82766641490217!3d19.08833338706313!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c90c7b7b7b7b%3A0x1c1c1c1c1c1c1c1c!2sMumbai%2C%20Maharashtra%2C%20India!5e0!3m2!1sen!2sin!4v1678901234567!5m2!1sen!2sin" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="ShobhaSarees Location on Google Maps"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. Newsletter Subscription -->
+        <section id="newsletter" class="py-16 md:py-24 bg-orange-600 text-white fade-in-section">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">Stay Updated - Subscribe to Our Newsletter</h2>
+                <p class="text-lg mb-8">Get the latest news, exclusive offers, and new arrivals directly to your inbox.</p>
+                <form action="#" method="POST" class="max-w-md mx-auto flex flex-col sm:flex-row gap-4">
+                    <input type="email" id="newsletter-email" name="email" class="flex-grow px-6 py-3 rounded-full border-2 border-white bg-white bg-opacity-20 text-white placeholder-white focus:outline-none focus:ring-2 focus:ring-white" placeholder="Enter your email address" required>
+                    <button type="submit" class="px-8 py-3 bg-white text-orange-600 font-semibold rounded-full shadow-lg hover:bg-gray-100 transition-colors">Subscribe</button>
+                    <!-- Honeypot field for spam protection (hidden from users) -->
+                    <input type="text" name="hp_field" style="display:none;" tabindex="-1" autocomplete="off">
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- 9. Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-12 md:py-16">
+        <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
+            <!-- Brand Info -->
+            <div>
+                <h3 class="text-xl font-bold text-white mb-4">ShobhaSarees</h3>
+                <p class="text-sm leading-relaxed">Bringing the finest Indian sarees to your doorstep since 1995. Experience tradition, quality, and elegance.</p>
+            </div>
+
+            <!-- Sitemap -->
+            <div>
+                <h4 class="text-lg font-semibold text-white mb-4">Quick Links</h4>
+                <ul class="space-y-2">
+                    <li><a href="#home" class="hover:text-orange-600 transition-colors">Home</a></li>
+                    <li><a href="#about" class="hover:text-orange-600 transition-colors">About Us</a></li>
+                    <li><a href="#products" class="hover:text-orange-600 transition-colors">Products</a></li>
+                    <li><a href="#gallery" class="hover:text-orange-600 transition-colors">Gallery</a></li>
+                    <li><a href="#contact" class="hover:text-orange-600 transition-colors">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <!-- Social Links -->
+            <div>
+                <h4 class="text-lg font-semibold text-white mb-4">Connect With Us</h4>
+                <div class="flex space-x-4">
+                    <a href="https://instagram.com" target="_blank" aria-label="Instagram" class="text-gray-400 hover:text-orange-600 transition-colors text-2xl">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://facebook.com" target="_blank" aria-label="Facebook" class="text-gray-400 hover:text-orange-600 transition-colors text-2xl">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://wa.me/919876543210" target="_blank" aria-label="WhatsApp" class="text-gray-400 hover:text-orange-600 transition-colors text-2xl">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="https://youtube.com" target="_blank" aria-label="YouTube" class="text-gray-400 hover:text-orange-600 transition-colors text-2xl">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Legal / Support -->
+            <div>
+                <h4 class="text-lg font-semibold text-white mb-4">Support</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:text-orange-600 transition-colors">Privacy Policy</a></li>
+                    <li><a href="#" class="hover:text-orange-600 transition-colors">Terms of Service</a></li>
+                    <li><a href="#" class="hover:text-orange-600 transition-colors">Refunds & Returns</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="border-t border-gray-700 mt-12 pt-8 text-center text-gray-500 text-sm">
+            &copy; 2025 ShobhaSarees. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- Live Chat Widget Placeholder -->
+    <div id="live-chat-widget" role="button" aria-label="Open Live Chat">
+        <i class="fab fa-whatsapp icon"></i>
+        <span>Chat with us!</span>
+    </div>
+
+    <script>
+        // JavaScript for dynamic functionalities
+
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when a link is clicked
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Smooth Scroll for "Explore More" and navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                // Prevent default and skip querySelector if href is just '#' or empty
+                if (href === '#' || href === '') {
+                    e.preventDefault();
+                    return;
+                }
+
+                const targetElement = document.querySelector(href);
+                if (targetElement) {
+                    e.preventDefault(); // Only prevent default if a valid target is found
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Hero Carousel Logic
+        const carousel = document.getElementById('hero-carousel');
+        const prevSlideBtn = document.getElementById('prev-slide');
+        const nextSlideBtn = document.getElementById('next-slide');
+        const carouselItems = carousel.querySelectorAll('.carousel-item');
+        let currentSlide = 0;
+        let autoSlideInterval;
+
+        function showSlide(index) {
+            currentSlide = (index + carouselItems.length) % carouselItems.length;
+            carousel.scrollTo({
+                left: carousel.offsetWidth * currentSlide,
+                behavior: 'smooth'
+            });
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function prevSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        // Auto-slide functionality
+        function startAutoSlide() {
+            autoSlideInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
+        }
+
+        function stopAutoSlide() {
+            clearInterval(autoSlideInterval);
+        }
+
+        // Event listeners for carousel buttons
+        nextSlideBtn.addEventListener('click', () => {
+            stopAutoSlide();
+            nextSlide();
+            startAutoSlide(); // Restart auto-slide after manual interaction
+        });
+        prevSlideBtn.addEventListener('click', () => {
+            stopAutoSlide();
+            prevSlide();
+            startAutoSlide(); // Restart auto-slide after manual interaction
+        });
+
+        // Swipe gestures for carousel
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        carousel.addEventListener('touchstart', (e) => {
+            touchStartX = e.touches[0].clientX;
+            stopAutoSlide();
+        });
+
+        carousel.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].clientX;
+            handleSwipe();
+            startAutoSlide();
+        });
+
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 50) { // Swiped left
+                nextSlide();
+            }
+            if (touchEndX > touchStartX + 50) { // Swiped right
+                prevSlide();
+            }
+        }
+
+        // Start auto-slide when the page loads
+        document.addEventListener('DOMContentLoaded', startAutoSlide);
+
+
+        // Intersection Observer for Fade-in Sections
+        const fadeSections = document.querySelectorAll('.fade-in-section');
+
+        const observerOptions = {
+            root: null, // viewport
+            rootMargin: '0px',
+            threshold: 0.1 // 10% of the section must be visible
+        };
+
+        const sectionObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target); // Stop observing once visible
+                }
+            });
+        }, observerOptions);
+
+        fadeSections.forEach(section => {
+            sectionObserver.observe(section);
+        });
+
+        // Gallery Tabs Logic
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const galleryContents = document.querySelectorAll('.gallery-tab-content');
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons and hide all content
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                galleryContents.forEach(content => content.classList.add('hidden'));
+
+                // Add active class to clicked button
+                button.classList.add('active');
+
+                // Show corresponding content
+                const targetTab = button.dataset.tab;
+                document.getElementById(targetTab).classList.remove('hidden');
+            });
+        });
+
+        // Testimonial Carousel Logic (similar to hero carousel but with different scroll behavior)
+        const testimonialCarousel = document.getElementById('testimonial-carousel');
+        const prevTestimonialBtn = document.getElementById('prev-testimonial');
+        const nextTestimonialBtn = document.getElementById('next-testimonial');
+        const testimonialItems = testimonialCarousel.querySelectorAll('.carousel-item');
+        let currentTestimonialIndex = 0;
+
+        function showTestimonial(index) {
+            currentTestimonialIndex = (index + testimonialItems.length) % testimonialItems.length;
+            const itemWidth = testimonialItems[0].offsetWidth + (parseFloat(getComputedStyle(testimonialItems[0]).marginLeft) * 2); // Item width + margin
+            testimonialCarousel.scrollTo({
+                left: itemWidth * currentTestimonialIndex,
+                behavior: 'smooth'
+            });
+        }
+
+        prevTestimonialBtn.addEventListener('click', () => showTestimonial(currentTestimonialIndex - 1));
+        nextTestimonialBtn.addEventListener('click', () => showTestimonial(currentTestimonialIndex + 1));
+
+        // Testimonial Carousel Swipe
+        let testimonialTouchStartX = 0;
+        let testimonialTouchEndX = 0;
+
+        testimonialCarousel.addEventListener('touchstart', (e) => {
+            testimonialTouchStartX = e.touches[0].clientX;
+        });
+
+        testimonialCarousel.addEventListener('touchend', (e) => {
+            testimonialTouchEndX = e.changedTouches[0].clientX;
+            handleTestimonialSwipe();
+        });
+
+        function handleTestimonialSwipe() {
+            if (testimonialTouchEndX < testimonialTouchStartX - 50) { // Swiped left
+                showTestimonial(currentTestimonialIndex + 1);
+            }
+            if (testimonialTouchEndX > testimonialTouchStartX + 50) { // Swiped right
+                showTestimonial(currentTestimonialIndex - 1);
+            }
+        }
+
+        // Placeholder for Live Chat Widget (e.g., Tawk.to / Crisp / Intercom integration)
+        // In a real scenario, you would embed the snippet provided by the chat service here.
+        // Example:
+        // var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        // (function(){
+        // var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+        // s1.async=true;
+        // s1.src='https://embed.tawk.to/YOUR_PROPERTY_ID/default';
+        // s1.charset='UTF-8';
+        // s1.setAttribute('crossorigin','*');
+        // s0.parentNode.insertBefore(s1,s0);
+        // })();
+        document.getElementById('live-chat-widget').addEventListener('click', () => {
+            // In a real app, this would open the chat window
+            console.log('Live Chat Widget Clicked! (Placeholder)');
+            alert('Imagine a chat window popping up here!'); // Using alert for demonstration as per instructions to avoid it in production
+        });
+
+    </script>
+</body>
+</html>
